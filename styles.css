@@ -1,0 +1,709 @@
+/* --- Base and General Styles --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Nicer font stack */
+    background-color: #FAF3E0; /* Soft beige background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #444; /* Slightly softer text color */
+    line-height: 1.6;
+}
+
+/* --- Header --- */
+header {
+    background-color: #333333; /* Dark gray header */
+    color: #fff;
+    padding: 15px 40px; /* Adjusted padding */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure header stays above content */
+    width: 100%;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between; /* Space out logo/title and nav */
+    align-items: center;
+    max-width: 1200px; /* Limit content width */
+    margin: 0 auto; /* Center content */
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;  /* Adjust width as needed */
+    height: 60px; /* Adjust height as needed */
+    /* background-color: #26A69A;  <-- REMOVE this */
+    /* border-radius: 50%;       <-- REMOVE this (unless your image needs a circular frame) */
+    margin-right: 15px;
+    object-fit: contain; /* Keeps aspect ratio, ensures whole logo is visible */
+    /* vertical-align: middle; */ /* Add if vertical alignment with title looks off */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem; /* Slightly smaller */
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* --- Navigation --- */
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0 15px; /* Spacing between links */
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a:focus { /* Added focus state for accessibility */
+    background-color: #26A69A; /* Teal accent on hover */
+    color: #fff;
+}
+
+
+/* --- Main Content Area --- */
+.main-content {
+    padding: 30px 40px; /* Consistent padding */
+    flex: 1;
+    background-color: #ffffff; /* White content background */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    max-width: 1500px; /* Limit content width */
+    margin: 20px auto; /* Center content area with space from header/footer */
+    border-radius: 8px;
+    width: calc(100% - 80px); /* Adjust width considering padding */
+    box-sizing: border-box;
+}
+
+section {
+    margin-bottom: 50px; /* Space between sections */
+    padding-top: 100px; /* Offset for sticky header anchor links */
+    margin-top: -60px; /* Pull section up to counteract padding */
+}
+
+section h2 {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: #26A69A; /* Teal accent for headings */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#about p {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* --- Portfolio Container & Categories --- */
+.portfolio-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between category sections */
+}
+
+/* --- Card Styles (Common) --- */
+.card-container, .card2-container {
+    display: grid;
+    gap: 25px; /* Consistent gap */
+}
+
+/* Default: 1 column on small screens */
+.card-container {
+     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive grid */
+}
+
+.card2-container {
+    /* Slightly larger minimum for Rangoli cards if desired */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden; /* Crucial for overlay and image rounding */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: #fff; /* Ensure background for shadow */
+    display: flex; /* Use flex to control image/overlay */
+    flex-direction: column;
+}
+
+/* Specific card type adjustments if needed (e.g., aspect ratio) */
+/* .card, .card2, .card-style-3 can share most styles */
+
+
+.card img {
+    width: 100%;
+    height: 380px; /* Fixed height for more uniform look, adjust as needed */
+    object-fit: cover; /* Cover the area, may crop */
+    display: block;
+    border-radius: 10px 10px 0 0; /* Round top corners only if overlay is always visible */
+    transition: transform 0.3s ease-in-out;
+}
+/* Adjust height for card2 if they are meant to be taller */
+.card2 img {
+    height: 400px;
+}
+
+/* 1. Make the grid columns for Rangoli wider */
+#category2 .card2-container {
+    /* Override the default .card2-container grid */
+    /* Increase the minimum width significantly (e.g., from 300px to 450px) */
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    /* You might need fewer columns overall on wider screens now */
+}
+
+/* Adjust height for bootstrap gallery cards */
+.card-style-3 img {
+     height: auto; /* Let bootstrap columns determine height based on width */
+     min-height: 200px; /* Optional minimum height */
+     border-radius: 10px; /* Round all corners as it's inside a container */
+}
+
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75); /* Darker overlay for better contrast */
+    color: #fff;
+    padding: 15px; /* More padding */
+    transform: translateY(100%); /* Initially hidden */
+    transition: transform 0.35s ease-in-out;
+    border-radius: 0 0 10px 10px; /* Match card rounding */
+    font-size: 0.9rem;
+}
+
+.card-overlay h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-overlay p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.details-btn {
+    background-color: #26A69A; /* Teal accent */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+    background-color: #00796B; /* Darker teal */
+}
+
+
+/* --- Card Hover Effects --- */
+.card:hover {
+    transform: translateY(-5px) scale(1.03); /* Subtle lift and scale */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    z-index: 10; /* Bring card to front on hover */
+}
+
+/* Keep image scaling minimal to prevent pixelation */
+.card:hover img {
+     transform: scale(1.02);
+}
+
+.card:hover .card-overlay {
+    transform: translateY(0); /* Reveal overlay */
+}
+
+/* --- Contact Form --- */
+#contact h2 {
+    margin-bottom: 15px;
+}
+
+#contact p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+#contact p a {
+    color: #26A69A;
+    text-decoration: none;
+    font-weight: 500;
+}
+#contact p a:hover {
+    text-decoration: underline;
+    color: #00796B;
+}
+
+
+form {
+    max-width: 600px; /* Limit form width */
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Light background for form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600; /* Bolder labels */
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px; /* More padding */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding in width */
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #26A69A; /* Highlight focus */
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2); /* Subtle glow */
+    outline: none;
+}
+
+
+textarea {
+    resize: vertical; /* Allow vertical resize */
+}
+
+button[type="submit"] {
+    background-color: #26A69A; /* Teal accent */
+    color: white;
+    padding: 12px 25px; /* Larger button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block; /* Center button */
+    margin: 0 auto; /* Center button */
+}
+
+button[type="submit"]:hover {
+    background-color: #00796B; /* Darker teal */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* --- Social Media Links --- */
+.social-links {
+    text-align: center; /* Center icons */
+    margin-top: 40px;
+}
+
+.social-links a {
+    color: #26A69A; /* Teal accent */
+    text-decoration: none;
+    font-size: 28px; /* Larger icons */
+    margin: 0 12px; /* Spacing */
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Allows transform */
+}
+
+.social-links a:hover {
+    color: #00796B; /* Darker teal */
+    transform: scale(1.1); /* Slightly enlarge icon */
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #333333; /* Dark gray footer */
+    color: #ccc; /* Lighter text for footer */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Push footer to bottom */
+    font-size: 0.9rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .navbar ul {
+        margin-top: 15px;
+        justify-content: center;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+    }
+     .navbar ul li {
+        margin: 5px 10px; /* Adjust spacing for wrapping */
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+    .main-content {
+        padding: 20px;
+        width: calc(100% - 40px);
+    }
+    section h2 {
+        font-size: 1.8rem;
+    }
+    .card-container, .card2-container {
+         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller min on medium screens */
+    }
+    /* Ensure bootstrap columns stack correctly */
+    .col-lg-4.col-md-6 {
+        flex: 0 0 50%; /* Bootstrap default md behaviour */
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+     .col-lg-4.col-md-6 {
+        flex: 0 0 100%; /* Stack bootstrap columns */
+        max-width: 100%;
+    }
+     .card-container, .card2-container {
+         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Allow slightly larger single column cards */
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 15px 20px;
+    }
+    header h1 {
+        font-size: 1.6rem;
+    }
+    .logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .main-content {
+        padding: 15px;
+         width: calc(100% - 30px);
+         margin: 10px auto;
+    }
+    .navbar ul li a {
+        font-size: 1rem;
+        padding: 6px 10px;
+    }
+    form {
+        padding: 20px;
+    }
+    button[type="submit"] {
+        padding: 10px 20px;
+    }
+    .social-links a {
+        font-size: 24px;
+        margin: 0 8px;
+    }
+     .card-container, .card2-container {
+         grid-template-columns: 1fr; /* Single column */
+          gap: 20px;
+    }
+     .card img, .card2 img, .card-style-3 img {
+        height: 280px; /* Adjust height for single column */
+     }
+}
+
+/* --- Image Modal Styles --- */
+
+/* --- Pinterest-Style Modal CSS --- */
+
+/* Outer Modal Overlay (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Allow scrolling the overlay if content panel is too tall */
+    background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    /* Use Flexbox to center the inner content panel */
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add some padding around the content panel */
+    box-sizing: border-box;
+}
+
+/* Inner Content Panel */
+.pinterest-modal-content {
+    position: relative; /* For positioning the close button */
+    background-color: #ffffff;
+    border-radius: 16px; /* Pinterest often uses larger radius */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    max-width: 900px; /* Max width of the panel */
+    width: 95%; /* Responsive width */
+    max-height: 90vh; /* Max height relative to viewport */
+    display: flex; /* Use flex for two-column layout */
+    overflow: hidden; /* Hide overflow from children initially */
+    /* Add simple fade-in animation */
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Layout Columns */
+.modal-image-container {
+    flex: 1 1 55%; /* Flex grow, shrink, basis (image takes ~55%) */
+    overflow: hidden; /* Hide image overflow */
+    /*background-color: #f0f0f0; *//* Placeholder background */
+    display: flex; /* Center image inside */
+    /*justify-content: center;*/
+    align-items: center;
+    /* Optional: Add padding if image feels too close to edge */
+    padding: 10px;
+    box-sizing: border-box;  /* Add if padding is added */
+}
+
+.modal-image-container.landscape-padding {
+    padding-bottom: 100px; /* Or your desired padding value */
+}
+
+.modal-details-container {
+    flex: 1 1 45%; /* Details take ~45% */
+    padding: 25px 30px;
+    overflow-y: auto; /* Allow scrolling ONLY in details if needed */
+    max-height: 90vh; /* Match max-height of parent for scroll context */
+    box-sizing: border-box;
+}
+
+/* The Image Itself */
+#modalImage {
+    display: block;
+    max-width: 100%;
+    max-height: 85vh; /* Allow some margin within its container */
+    height: auto;
+    width: auto; /* Let aspect ratio determine dimensions */
+    object-fit: contain; /* Ensure whole image is visible */
+    border-radius: 16px 16px 16px 16px; /* Round top-left/bottom-left corners */
+}
+
+/* Styling for Details */
+#modalTitle {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    color: #333;
+    line-height: 1.3;
+}
+
+#modalDescription {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Add styles for other potential elements like buttons or links here  */
+/*Example:*/
+modalSourceLink, #modalSaveButton {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+modalSourceLink { background-color: #eee; color: #333; }
+modalSaveButton { background-color: #e60023; color: white; border: none; }
+
+
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #555; /* Darker close button for white background */
+    background-color: rgba(255, 255, 255, 0.8); /* Slight background for visibility */
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 28px;
+    line-height: 36px; /* Center the 'x' */
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    z-index: 10; /* Ensure it's above content */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    background-color: rgba(230, 230, 230, 0.9);
+}
+
+/* Hide scrollbar on body when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Responsive Adjustments for Modal --- */
+@media (max-width: 768px) {
+    .pinterest-modal-content {
+        flex-direction: column; /* Stack columns vertically */
+        max-height: 95vh; /* Allow slightly more height */
+        width: 90%; /* Slightly narrower on very small screens */
+        overflow-y: auto; /* Allow scrolling the whole panel if needed */
+        overflow-x: hidden;
+    }
+
+    .modal-image-container {
+        flex-basis: auto; /* Reset flex basis */
+        max-height: 60vh; /* Limit image height on mobile */
+    }
+
+    .modal-details-container {
+        flex-basis: auto;
+        max-height: none; /* Let details container grow */
+        padding: 20px 25px;
+        overflow-y: visible; /* Don't need internal scroll usually */
+    }
+
+    #modalImage {
+         border-radius: 16px 16px 16px 16px; /* Round top corners only */
+         max-height: 60vh; /* Match container */
+    }
+
+    #modalTitle {
+        font-size: 1.4rem;
+    }
+
+    #modalDescription {
+        font-size: 0.95rem;
+    }
+
+     .close-button {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 24px;
+        color: #fff; /* White on mobile can be better over image */
+        background-color: rgba(0, 0, 0, 0.5);
+     }
+     .close-button:hover {
+         background-color: rgba(0, 0, 0, 0.7);
+     }
+}
+
+/* --- Temporarily Hide View Details Buttons --- */
+.details-btn {
+    display: none !important; /* Hide the button */
+}
+
+/* Styling for the new metadata line */
+.artwork-meta {
+    font-size: 0.9rem;  /* Slightly smaller text */
+    color: #777;       /* Gray color */
+    margin-top: 5px;    /* Space below title */
+    margin-bottom: 15px;/* Space above description */
+    line-height: 1.4;
+}
+
+/* Style the year part specifically */
+#modalYear {
+    /* Optional: Add some space if both medium and year are present */
+    /* We'll add a separator using JS if needed */
+}
+
+/* Optional: if you want a visual separator like a pipe */
+#modalYear.with-separator::before {
+  content: "| ";
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #bbb; /* Lighter color for separator */
+}
+
+/* --- Like Button Styles --- */
+.modal-actions {
+    margin-top: 20px; /* Space above the actions */
+    display: flex;    /* Align items horizontally */
+    align-items: center;
+}
+
+.like-button {
+    background: none;       /* Remove default background */
+    border: none;         /* Remove default border */
+    padding: 5px 8px;     /* Adjust clickable area */
+    margin: 0;
+    cursor: pointer;
+    color: #555;         /* Default icon color */
+    font-size: 1.5rem;    /* Size of the heart icon */
+    line-height: 1;       /* Prevent extra vertical space */
+    transition: color 0.2s ease-in-out, transform 0.1s ease; /* Smooth transitions */
+    margin-right: 8px;    /* Space between button and count (if added) */
+}
+
+.like-button:hover {
+    color: #e60023; /* Red color on hover (optional) */
+}
+
+.like-button:active {
+    transform: scale(0.9); /* Click feedback */
+}
+
+/* Style for the 'liked' state */
+.like-button.liked {
+    color: #e60023; /* Pinterest red for liked */
+}
+
+/* Style for like count (optional) */
+.like-count {
+    font-size: 0.9rem;
+    color: #777;
+}
